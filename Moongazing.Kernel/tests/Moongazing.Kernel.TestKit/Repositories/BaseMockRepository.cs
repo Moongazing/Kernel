@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Moongazing.Kernel.Application.Rules;
+using Moongazing.Kernel.Localization.Abstractions;
 using Moongazing.Kernel.Persistence.Repositories;
 using Moongazing.Kernel.Persistence.Repositories.Common;
 using Moongazing.Kernel.TestKit.FakeData;
@@ -11,29 +13,29 @@ public abstract class BaseMockRepository<TRepository, TEntity, TEntityId, TMappi
     where TEntity : Entity<TEntityId>, new()
     where TRepository : class, IAsyncRepository<TEntity, TEntityId>, IRepository<TEntity, TEntityId>
     where TMappingProfile : Profile, new()
-    //where TBusinessRules : BaseBusinessRules
+    where TBusinessRules : BaseBusinessRules
     where TFakeData : FakeDataBuilderBase<TEntity, TEntityId>, new()
 {
     public IMapper Mapper;
     public Mock<TRepository> MockRepository;
     public TBusinessRules BusinessRules;
 
-    //public BaseMockRepository(TFakeData fakeData)
-    //{
-    //    MapperConfiguration mapperConfig =
-    //        new(c =>
-    //        {
-    //            c.AddProfile<TMappingProfile>();
-    //        });
-    //    Mapper = mapperConfig.CreateMapper();
+    public BaseMockRepository(TFakeData fakeData)
+    {
+        MapperConfiguration mapperConfig =
+            new(c =>
+            {
+                c.AddProfile<TMappingProfile>();
+            });
+        Mapper = mapperConfig.CreateMapper();
 
-    //    MockRepository = MockRepositoryHelper.GetRepository<TRepository, TEntity, TEntityId>(fakeData.Data);
-    //    BusinessRules =
-    //        (TBusinessRules)
-    //            Activator.CreateInstance(
-    //                type: typeof(TBusinessRules),
-    //                MockRepository.Object,
-    //                new ResourceLocalizationManager(resources: []) { AcceptLocales = new[] { "en" } }
-    //            )! ?? throw new InvalidOperationException($"Cannot create an instance of {typeof(TBusinessRules).FullName}.");
-    //}
+        MockRepository = MockRepositoryHelper.GetRepository<TRepository, TEntity, TEntityId>(fakeData.Data);
+        BusinessRules =
+            (TBusinessRules)
+                Activator.CreateInstance(
+                    type: typeof(TBusinessRules),
+                    MockRepository.Object,
+                    new ResourceLocalizationService(resources: []) { AcceptLocales = ["en"] }
+                )! ?? throw new InvalidOperationException($"Cannot create an instance of {typeof(TBusinessRules).FullName}.");
+    }
 }

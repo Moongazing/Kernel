@@ -12,6 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Moongazing.Kernel.Application\Moongazing.Kernel.Application.csproj" />
+    <ProjectReference Include="..\..\src\Moongazing.Kernel.Localization\Moongazing.Kernel.Localization.csproj" />
     <ProjectReference Include="..\..\src\Moongazing.Kernel.Persistence\Moongazing.Kernel.Persistence.csproj" />
   </ItemGroup>
 
