@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Net.Http.Headers;
+using Moongazing.Kernel.Localization.Abstractions;
 using System.Collections.Immutable;
 
 namespace Moongazing.Kernel.Localization.Middlewares;
