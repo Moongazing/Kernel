@@ -22,7 +22,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8ADEFC3D-C9A5-405D-9DED-FFDFEBA08FDA}"
 	ProjectSection(SolutionItems) = preProject
 		..\LICENSE.txt = ..\LICENSE.txt
-		..\logo.jpg = ..\logo.jpg
+		..\LogoMoongazing.jpg = ..\LogoMoongazing.jpg
 		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
